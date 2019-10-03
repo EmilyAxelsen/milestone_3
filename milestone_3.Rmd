@@ -1,0 +1,55 @@
+---
+title: "Milestone #3"
+author: "Emily Axelsen"
+date: "10/2/2019"
+output: html_document
+---
+```{r setup, include=FALSE}
+library(tidyverse)
+library(ggplot2)
+
+```
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+state_policy <- read_csv("correlatesofstatepolicyprojectv2_1.csv", col_types = cols(
+  .default = col_character(),
+  turnout_scale = col_double(),
+  turnout_score = col_double(),
+  w_LV = col_double(),
+  w_RV = col_double(),
+  final_weight = col_double(),
+  timestamp = col_datetime(format = "")
+))
+```
+
+
+```{r}
+state_policy %>%
+  filter(state == "California") %>%
+  filter(year %in% (1957:2016)) %>%
+  select(gunbckcheck, vcrimerate, vcrimetotal, murderrate, murdertotal, gunfree, guncontrol_assaultweapon_ban, guncontrol_licenses_dealers, guncontrol_opencarry, guncontrol_satnightspecial_ban, guncontrol_stand_your_ground)
+
+# found rows of interest 
+
+```
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+background_checks <- read_csv("nics-firearm-background-checks.csv", col_types = cols(
+  .default = col_character(),
+  turnout_scale = col_double(),
+  turnout_score = col_double(),
+  w_LV = col_double(),
+  w_RV = col_double(),
+  final_weight = col_double(),
+  timestamp = col_datetime(format = "")
+))
+
+# What states have the most gun sales - how does this relate to gun laws in that state
+
+```
+
