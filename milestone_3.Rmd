@@ -12,8 +12,8 @@ library(ggplot2)
 
 
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r }
+knitr::opts_chunk$set(echo = FALSE)
 state_policy <- read_csv("correlatesofstatepolicyprojectv2_1.csv", col_types = cols(
   .default = col_character(),
   turnout_scale = col_double(),
@@ -26,19 +26,46 @@ state_policy <- read_csv("correlatesofstatepolicyprojectv2_1.csv", col_types = c
 ```
 
 
-```{r}
+```{r gun background check}
+knitr::opts_chunk$set(echo = FALSE)
 state_policy %>%
   filter(state == "California") %>%
-  filter(year %in% (1957:2016)) %>%
-  select(gunbckcheck, vcrimerate, vcrimetotal, murderrate, murdertotal, gunfree, guncontrol_assaultweapon_ban, guncontrol_licenses_dealers, guncontrol_opencarry, guncontrol_satnightspecial_ban, guncontrol_stand_your_ground)
+  filter(year %in% (1999:2016)) %>%
+  select(gunbckcheck)
+
+state_policy %>%
+  filter(state == "California") %>%
+  filter(year %in% (1960:2016))%>%
+  select(vcrimerate, vcrimetotal)
+
+state_policy %>%
+  filter(state == "California") %>%
+  filter(year %in% (1960:2016))%>%
+  select(murderrate, murdertotal)
+
+state_policy %>%
+  filter(state == "California") %>%
+  filter(year %in% (1989:2016))%>%
+  select(guncontrol_assaultweapon_ban)
+
+#gunfree, guncontrol_licenses_dealers, guncontrol_opencarry, guncontrol_satnightspecial_ban, guncontrol_stand_your_ground
+
 
 # found rows of interest 
+
+# gunbckcheck --> November 30, 1998 Brady Handgun Violence Prevention Act provisions effective; require background checks for people who want to transfer handguns and long guns from a federal arms licensee; background check includes pawn shop transactions and retail gun shops; minimum background check is the FBI national instant criminial background check system (which I have the data for)
+
+# relevant additional information: In 1999, 204,000 of 8,621,000 applications for firearm transfer were rejected (2.4%); over half of the applications were reviewed by the FBI (remaining applications reviewed by state or local agencies); lower rejection rate in states where background checks were conducted by the FBI (1.8%) 
+
+# In evaluations by states and agencies, 73% of the rejections were due to a felony conviction, 11% for domestic violece conviction/restraining order, 4% for state or local law prohibitions; FBI had a higher rejection rate for domestic violence convicions/restraining orders at 15%
+
+# helpful source: https://bjs.gov/content/pub/pdf/bcft99.pdf 
 
 ```
 
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r nackground checks}
+knitr::opts_chunk$set(echo = FALSE)
 background_checks <- read_csv("nics-firearm-background-checks.csv", col_types = cols(
   .default = col_character(),
   turnout_scale = col_double(),
