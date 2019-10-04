@@ -10,17 +10,9 @@ library(ggplot2)
 ```
 
 
-```{r reading in state policy data, messages = FALSE, warnings = FALSE}
+```{r reading in state policy data}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
-state_policy <- read_csv("correlatesofstatepolicyprojectv2_1.csv", col_types = cols(
-  .default = col_character(),
-  turnout_scale = col_double(),
-  turnout_score = col_double(),
-  w_LV = col_double(),
-  w_RV = col_double(),
-  final_weight = col_double(),
-  timestamp = col_datetime(format = "")
-))
+state_policy <- read_csv("correlatesofstatepolicyprojectv2_1.csv")
 ```
 
 
@@ -52,18 +44,38 @@ knitr::opts_chunk$set(echo = FALSE)
 ```{r reading in firearm background check data}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 background_checks <- read_csv("nics-firearm-background-checks.csv", col_types = cols(
-  .default = col_character(),
-  turnout_scale = col_double(),
-  turnout_score = col_double(),
-  w_LV = col_double(),
-  w_RV = col_double(),
-  final_weight = col_double(),
-  timestamp = col_datetime(format = "")
+  month = col_character(),
+  state = col_character(),
+  permit = col_double(),
+  permit_recheck = col_double(),
+  handgun = col_double(),
+  long_gun = col_double(),
+  other = col_double(),
+  multiple = col_double(),
+  admin = col_double(),
+  prepawn_handgun = col_double(),
+  prepawn_long_gun = col_double(),
+  prepawn_other = col_double(),
+  redemption_handgun = col_double(),
+  redemption_long_gun = col_double(),
+  redemption_other = col_double(),
+  returned_handgun = col_double(),
+  returned_long_gun = col_double(),
+  returned_other = col_double(),
+  rentals_handgun = col_double(),
+  rentals_long_gun = col_double(),
+  private_sale_handgun = col_double(),
+  private_sale_long_gun = col_double(),
+  private_sale_other = col_double(),
+  return_to_seller_handgun = col_double(),
+  return_to_seller_long_gun = col_double(),
+  return_to_seller_other = col_double(),
+  totals = col_double()
 ))
 ```
 
 
-As of right now, my project idea is to evaluate the statistically significant rates of gun violence in certain states/regions compared to the population. I am also interested in analyzing what rates of gun violence correlate to such as a history of economic injustice in a certain area and whether specific programs related to gun violence have a positive impact on communities. 
+Currently, my project idea is to evaluate the statistically significant rates of gun violence in certain states/regions compared to the population. I am also interested in analyzing what rates of gun violence correlate to such as a history of economic injustice in a certain area and whether specific programs related to gun violence have a positive impact on communities. 
 
 In order to start finding data for my project, I first explored the Data Is Plural Structured Archive for data related to gun violence. The data sources/topics I found most relevant and interesting are called “more data (and discussion) on mass shootings,” “firearm background checks,” “status of congressional bills” (I would explore if there are any bills related to gun violence), “gunshot detections” (which has data about gunshot detections in particular areas), “state gun laws,” “gun origins,” and “fatal and non-fatal gun crimes.” On the Data Is Plural spreadsheet, numerous articles are provided for each topic and websites to explore for potential data sources. For Milestone #3, I decided to explore the “state gun laws” and “firearm background checks” topics. 
 
