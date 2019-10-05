@@ -370,33 +370,75 @@ summary {
 
 
 <pre class="r"><code>knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
-state_policy &lt;- read_csv(&quot;correlatesofstatepolicyprojectv2_1.csv&quot;)</code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   .default = col_double(),
-##   state = col_character(),
-##   st = col_character(),
-##   undocumented_immigrants = col_character(),
-##   budg_lag_from_fy_end = col_logical(),
-##   change_amustax = col_logical(),
-##   change_docstocktax = col_logical(),
-##   change_sevtax = col_logical(),
-##   change_tobtax = col_logical(),
-##   change_vehtax = col_logical(),
-##   legislative_total_exp1_note = col_logical(),
-##   X = col_logical(),
-##   integrity = col_character(),
-##   govname1 = col_character(),
-##   govname1_sour = col_character(),
-##   govname1_date = col_character(),
-##   govname2 = col_character(),
-##   govname2_sour = col_character(),
-##   govname2_date = col_character(),
-##   govname2_notes = col_character(),
-##   gov_midyear_change_date = col_character()
-##   # ... with 46 more columns
-## )</code></pre>
-<pre><code>## See spec(...) for full column specifications.</code></pre>
+state_policy &lt;- read_csv(&quot;correlatesofstatepolicyprojectv2_1.csv&quot;, col_types = cols(
+  .default = col_double(),
+  state = col_character(),
+  st = col_character(),
+  undocumented_immigrants = col_character(),
+  budg_lag_from_fy_end = col_logical(),
+  change_amustax = col_logical(),
+  change_docstocktax = col_logical(),
+  change_sevtax = col_logical(),
+  change_tobtax = col_logical(),
+  change_vehtax = col_logical(),
+  legislative_total_exp1_note = col_logical(),
+  X = col_logical(),
+  integrity = col_character(),
+  govname1 = col_character(),
+  govname1_sour = col_character(),
+  govname1_date = col_character(),
+  govname2 = col_character(),
+  govname2_sour = col_character(),
+  govname2_date = col_character(),
+  govname2_notes = col_character(),
+  gov_midyear_change_date = col_character(),
+  when_leg_met2011_04_13 = col_character(),
+  gov_midyear_change_b_note = col_character(),
+  past_gov_note = col_character(),
+  gov_midyear_change_c_note = col_character(),
+  new_gov_c = col_character(),
+  new_gov_d = col_character(),
+  fracleg_old_variable_note = col_character(),
+  years_served_budgets_overseen_no = col_character(),
+  limit_exists = col_character(),
+  limit_type = col_character(),
+  term_limit_length_uncertainty = col_character(),
+  years_left_before_limit_note = col_character(),
+  lame_duck_last_term = col_character(),
+  lame_duck_notes = col_character(),
+  femgov = col_character(),
+  femgov_notes = col_character(),
+  stateleg = col_character(),
+  stateleg_source = col_character(),
+  congmem = col_character(),
+  congmem_sour = col_character(),
+  stateleg_congmem_notes = col_character(),
+  abor_athosp = col_character(),
+  abor_secphys = col_character(),
+  information_practices_code = col_logical(),
+  universalprek = col_logical(),
+  victims_of_crime_act__model = col_logical(),
+  fcap = col_character(),
+  frent = col_character(),
+  fwrlurim = col_character(),
+  kstatsum = col_character(),
+  knlc = col_character(),
+  knps = col_character(),
+  knpindex = col_character(),
+  kttack = col_character(),
+  klicsurv = col_character(),
+  Ddlstr = col_character(),
+  Bipcraw = col_character(),
+  bipt = col_character(),
+  bstheft = col_character(),
+  Blocks = col_character(),
+  bdtr = col_character(),
+  bss = col_character(),
+  bsbr = col_character(),
+  bsbs = col_character(),
+  baow = col_character(),
+  `_merge` = col_character()
+))</code></pre>
 <pre><code>## Warning: 415 parsing failures.
 ## row                       col           expected       actual                                     file
 ##  69 gov_midyear_change_c_note delimiter or quote              'correlatesofstatepolicyprojectv2_1.csv'
@@ -408,9 +450,10 @@ state_policy &lt;- read_csv(&quot;correlatesofstatepolicyprojectv2_1.csv&quot;)<
 ## See problems(...) for more details.</code></pre>
 <p>Currently, my project idea is to evaluate the statistically significant rates of gun violence in certain states/regions compared to the population. I am also interested in analyzing what rates of gun violence correlate to such as a history of economic injustice in a certain area and whether specific programs related to gun violence have a positive impact on communities.</p>
 <p>In order to start finding data for my project, I first explored the Data Is Plural Structured Archive for data related to gun violence. The data sources/topics I found most relevant and interesting are called “more data (and discussion) on mass shootings,” “firearm background checks,” “status of congressional bills” (I would explore if there are any bills related to gun violence), “gunshot detections” (which has data about gunshot detections in particular areas), “state gun laws,” “gun origins,” and “fatal and non-fatal gun crimes.” On the Data Is Plural spreadsheet, numerous articles are provided for each topic and websites to explore for potential data sources. For Milestone #3, I decided to explore the “state gun laws” and “firearm background checks” topics.</p>
-<p>For the “state gun laws” topic, I explored a Data Is Plural newsletter to find the Institute for Public Policy and Social Research website which is through Michigan State University. I then explored the IPPSR website and was able to find a section called Correlates of State Policy through the Public Policy section. On the Correlates of State Policy page, there was a link to a CSV file with the complete dataset of state policy data that includes nine hundred plus variables. From this dataset, I hope to explore how gun policies impacted firearm sales and resulting gun violence through collaborations with my other data sources.</p>
-<p>In the state policy dataset, I first read in the data with read_csv since the data is a csv file. I assigned the data to state_policy to easily access the data. Next, I explored the many different variables and identified the following columns of interest as most relevant to my project: gunfree, guncontrol_licenses_dealers, guncontrol_opencarry, guncontrol_satnightspecial_ban, guncontrol_stand_your_ground, guncontrol_assualtweapon_ban, murderrate, murdertotal, vcrimerater, vcrimetotal, and gunbckcheck. I then filtered for the state of California because I am interested in exploring gun violence in California due to the large population and high gun violence rates. I also identified the range of years where the variable was not NA as there are many NAs in the spreadsheet. Finally, I selected for the individual columns that applied to those years. When researching state policy, I also found a source that will be helpful for me to understand gun policy and laws (<a href="https://bjs.gov/content/pub/pdf/bcft99.pdf" class="uri">https://bjs.gov/content/pub/pdf/bcft99.pdf</a>). Moving forward, I hope to continue to explore which variables will be most helpful for my data analysis. When I spoke with Preceptor about the large size of the spreadsheet, he recommended that I only work with the variables I know I’m using and think about the graphs I want to make from the data rather than focusing on cleaning all the data. Therefore, by exploring the data values a bit more I hope to continue to think about what visuals I want to make with my data.</p>
+<p>For the “state gun laws” topic, I explored a Data Is Plural newsletter to find the Institute for Public Policy and Social Research website which is through Michigan State University. I then explored the IPPSR website and was able to find a section called Correlates of State Policy through the Public Policy section. On the Correlates of State Policy page, there was a link to a CSV file with the complete dataset of state policy data that includes nine hundred plus variables. Using this dataset in the future, I hope to explore how gun policies impacted firearm sales and resulting gun violence through collaborations with my other data sources.</p>
+<p>In the state policy dataset, I first read in the data with read_csv since the data is a csv file. I assigned the data to state_policy to easily access the data. Next, I explored the many different variables and identified the following columns of interest as most relevant to my project: gunfree, guncontrol_licenses_dealers, guncontrol_opencarry, guncontrol_satnightspecial_ban, guncontrol_stand_your_ground, guncontrol_assualtweapon_ban, murderrate, murdertotal, vcrimerater, vcrimetotal, and gunbckcheck. I then filtered for the state of California because I am interested in exploring gun violence in California due to the large population and high gun violence rates. I also identified the range of years where the variable was not NA as there are many NAs in the spreadsheet. Finally, I selected for the individual columns that applied to those years. When researching state policy, I also found a source that will be helpful for me to understand gun policy and laws (<a href="https://bjs.gov/content/pub/pdf/bcft99.pdf" class="uri">https://bjs.gov/content/pub/pdf/bcft99.pdf</a>). I commented out the code I wrote because it is still a work in progress and I didn’t want the file to show up in my HTML file. Moving forward, I hope to continue to explore which variables will be most helpful for my data analysis. When I spoke with Preceptor about the large size of the spreadsheet, he recommended that I only work with the variables I know I’m using and think about the graphs I want to make from the data rather than focusing on cleaning all the data. Therefore, by exploring the data values a bit more I hope to continue to think about what visuals I want to make with my data.</p>
 <p>I also loaded in a firearm background check dataset with the read_csv function as the dataset is a csv file. I assigned the dataset to background_checks to easily access the data. I chose this dataset because, according to the Data Is Plural spreadsheet, firearm background checks have a close correlation to gun sales and are therefore a good way to identify the number of gun sales in a certain state. The Data Is Plural spreadsheet provided a Github repo link so I cloned the repo and loaded it into a new R project. I then removing the data as a csv file by dragging it out of the new directory I made and into my Milestone #3 folder before adding it to my Milestone #3 R project. I hope to use the background check data to compare the number of approved background checks to the level of gun violence in a particular state. I also hope to connect this to gun laws in different states with varying levels of strictness in regards to the buying and selling of firearms. Similarly, I would be interested in exploring what states have the most gun sales and how that relates to gun laws in that state.</p>
+<p><strong>Please Note: I used spec(read_csv(“correlatesofstatepolicyprojectv2_1.csv”)) %&gt;% cols_condense() to try to get the correct cols_types() but the code is still unfortunately printing out in the HTML. I tried to use cols_condense() because the cols_types() list is super long and I wasn’t able to view the whole list in the console. I also tried library(vroom) but that also didn’t work. On Piazza, Preceptor said I didn’t have to worry about it for this Milestone. I apologize for this inconvenience.</strong></p>
 
 
 
